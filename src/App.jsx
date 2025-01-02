@@ -14,10 +14,23 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem("reviews", JSON.stringify(reviews));
   }, [reviews]);
+  const updateFeedback = (feedbackType) => {
+    setReviews((prev) => ({
+      ...prev,
+      [feedbackType]: prev[feedbackType] + 1,
+    }));
+  };
+  const handleReset = () => {
+    setReviews({ good: 0, neutral: 0, bad: 0 });
+  };
   return (
     <>
       <Description />
-      <Options setReviews={setReviews} totalFeedback={totalFeedback} />
+      <Options
+        handleReset={handleReset}
+        totalFeedback={totalFeedback}
+        updateFeedback={updateFeedback}
+      />
       {totalFeedback > 0 ? (
         <Feedback
           {...reviews}

@@ -1,15 +1,6 @@
 import styles from "./Options.module.css";
 
-const Options = ({ setReviews, totalFeedback }) => {
-  const updateFeedback = (feedbackType) => {
-    setReviews((prev) => ({
-      ...prev,
-      [feedbackType]: prev[feedbackType] + 1,
-    }));
-  };
-  const handleReset = () => {
-    setReviews({ good: 0, neutral: 0, bad: 0 });
-  };
+const Options = ({ handleReset, totalFeedback, updateFeedback }) => {
   return (
     <div className={styles.container}>
       <button
